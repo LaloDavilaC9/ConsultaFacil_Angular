@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="container mt-4">
+    <h1>CONTROL DE PERSONAL DE DENTALÍSTICO</h1>
+  
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoEmpleado.nombre">
+      </div>
+      <div class="form-group">
+        <label for="app">Apellido Paterno:</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoEmpleado.app">
+      </div>
+      <div class="form-group">
+        <label for="apm">Apellido Materno:</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoEmpleado.apm">
+      </div>
+      <div class="form-group">
+        <label for="puesto">Puesto:</label>
+        <input type="text" class="form-control" id="puesto" [(ngModel)]="nuevoEmpleado.puesto">
+      </div>
+      <button class="btn btn-success" (click)="darDeAlta()">Dar de Alta</button>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empleado of empleados">
+          <td>{{ empleado.nombre }} {{empleado.app}} {{empleado.apm}}</td>
+          <td>
+            <button class="btn btn-danger" (click)="darDeBaja(empleado)">Dar de Baja</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    
+  </div>
+  

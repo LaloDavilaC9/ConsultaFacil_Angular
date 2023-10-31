@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="container mt-4">
+  <h1>AGENDA DE DENTALÍSTICO</h1>
+    <div class="row">
+      <!-- Columna de foto del calendario -->
+      <div class="col-md-4">
+        <img src="../../assets/calendario.PNG" alt="Calendario" class="img-fluid">
+      </div>
+  
+      <!-- Columna de la tabla -->
+      <div class="col-md-8">
+        <h2>26 DE MARZO DE 2014</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>Estado</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas de la tabla -->
+            <tr *ngFor="let hora of horas">
+              <td>{{ hora }}</td>
+              <td>{{ obtenerEstado(hora) }}</td>
+              <td>
+                <button *ngIf="esPaciente(hora)" class="btn btn-primary" (click)="verInformacion(hora)">Ver Información</button>
+                <button *ngIf="esPaciente(hora)" class="btn btn-danger" (click)="cancelarCita(hora)">Cancelar Cita</button>
+                <button *ngIf="esHabilitada(hora)" class="btn btn-warning" (click)="deshabilitarHora(hora)">Deshabilitar Hora</button>
+                <button *ngIf="esDeshabilitada(hora)" class="btn btn-success" (click)="habilitarHora(hora)">Habilitar Hora</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

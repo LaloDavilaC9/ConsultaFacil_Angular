@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="container">
+    <h1>REGISTRO DE CONSULTORIO</h1>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">NOMBRE DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">DIRECCIÓN DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese la dirección del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">TELÉFONO DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">CORREO ELECTRÓNICO DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">UBICACIÓN DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">NOMBRE CLAVE DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">CONTRASEÑA DEL CONSULTORIO</span>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del consultorio">
+    </div>
+
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelect01">ESPECIALIDAD</label>
+        <select class="form-select" id="inputGroupSelect01">
+          <option selected>ELEGIR ESPECIALIDAD...</option>
+          <option value="1">Dental</option>
+          <option value="2">Quiropráctico</option>
+          <option value="3">Médico general</option>
+          <option value="4">Pediatría</option>
+          <option value="5">Ginecología</option>
+        </select>
+    </div>
+
+
+    <div class="input-group">
+        <span class="input-group-text">DATOS DEL DR. TITULAR</span>
+        <input type="text" aria-label="Nombre" class="form-control" placeholder="Ingrese el nombre">
+        <input type="text" aria-label="App" class="form-control" placeholder="Ingrese el apellido paterno">
+        <input type="text" aria-label="Apm" class="form-control" placeholder="Ingrese el apellido materno">
+
+    </div>
+    <br>
+
+    <div class="input-group">
+        <button class="btn btn-primary" type="button" [routerLink]="['/controlPanel']">REGISTRAR CONSULTORIO</button>
+    </div>
+
+</div>

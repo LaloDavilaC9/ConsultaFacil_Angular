@@ -1,0 +1,74 @@
+<app-header></app-header>
+<h1>HISTORIAL DE CITAS DE DENTALÍSTICO</h1>
+<div class="container mt-4">
+    <div class="row">
+        <!-- Primer Div -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">NÚMERO DE CITA: 1000</h5>
+                    <p class="card-text">Fecha: 28 de Octubre de 2023</p>
+                    <p class="card-text">Hora: 10:00 AM</p>
+                    <p class="card-text">Paciente: Nombre del Paciente 1</p>
+                    <p class="card-text">Doctor: Dr. Juan Pérez</p>
+                    <p class="card-text">Edad del Paciente: 30 años</p>
+                    <p class="card-text">Especialidad: Cardiología</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#anotacionesModal1">Anotaciones</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para Anotaciones (Cita 1) -->
+        <div class="modal fade" id="anotacionesModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Anotaciones para Cita 1</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Contenido del modal para anotaciones -->
+                        Aquí puedes agregar tus anotaciones para la Cita 1.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Segundo Div -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">NÚMERO DE CITA: 1001</h5>
+                    <p class="card-text">Fecha: 30 de Octubre de 2023</p>
+                    <p class="card-text">Hora: 2:30 PM</p>
+                    <p class="card-text">Paciente: Nombre del Paciente 2</p>
+                    <p class="card-text">Doctor: Dra. María Gómez</p>
+                    <p class="card-text">Edad del Paciente: 25 años</p>
+                    <p class="card-text">Especialidad: Dermatología</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#anotacionesModal2">Anotaciones</button>
+                    <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#concluirModal2">Concluir Cita</button>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Modal para Anotaciones (Cita 2) -->
+        <div class="modal fade" id="anotacionesModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Contenido del modal para anotaciones (similar al modal de Cita 1) -->
+        </div>
+
+        <!-- Modal para Concluir Cita (Cita 2) -->
+        <div class="modal fade" id="concluirModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- Contenido del modal para concluir cita -->
+        </div>
+    </div>
+
+    
+</div>
+
+
