@@ -4,12 +4,13 @@
     <div class="row">
       <!-- Columna de foto del calendario -->
       <div class="col-md-4">
-        <img src="../../assets/calendario.PNG" alt="Calendario" class="img-fluid">
+        <ngb-datepicker #dp [(ngModel)]="model" (ngModelChange)="onDateSelect($event)"></ngb-datepicker>
+
       </div>
-  
+      
       <!-- Columna de la tabla -->
       <div class="col-md-8">
-        <h2>26 DE MARZO DE 2014</h2>
+        <h2>{{fechaString}}</h2>
         <table class="table">
           <thead>
             <tr>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,7 +28,13 @@ import { TeamComponent } from './team/team.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AnotacionesModalComponent } from './modals/modal-anotaciones/modal-anotaciones.component';
+import { DatePipe } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { NgbDatepickerI18n, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
     StatisticsComponent,
     SupportComponent,
     TeamComponent,
+    AnotacionesModalComponent
     
   ],
   imports: [
@@ -61,10 +68,14 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,   
+    MatDialogModule,
+    
+
 
   ],
-  providers: [],
+  providers: [DatePipe],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

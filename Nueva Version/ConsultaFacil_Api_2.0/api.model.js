@@ -52,7 +52,7 @@ module.exports = {
       c.Finalizada = 1 AND co.ID_Consultorio =`+idConsultorio+` ;`;
 
       
-      console.log(query);
+     // console.log(query);
       connection.query(query, (err, results) => {
         if (err) {
           callback({

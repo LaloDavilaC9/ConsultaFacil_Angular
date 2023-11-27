@@ -8,14 +8,14 @@ import { formatDate } from '@angular/common';
   selector: 'app-control-panel',
   templateUrl: './control-panel.component.html',
   styleUrls: ['./control-panel.component.css'],
-  template: `
-  <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" (select)="onDateSelect($event)"></ngb-datepicker>
-  <p>Date selected: {{ selectedDate | date: 'shortDate' }}</p>`,
+ 
 })
 export class ControlPanelComponent implements OnInit {
   model: NgbDateStruct | undefined;
   selectedDate: Date| undefined;
   fechaActual: String  = "";
+
+  
   citasDeHoy : any[] = []
   tituloTabla : String = "PACIENTES DE HOY";
   constructor(private apiService: ApiService) { }
@@ -31,7 +31,7 @@ export class ControlPanelComponent implements OnInit {
 
   onDateSelect(date: NgbDateStruct) {
       // `date` es de tipo `NgbDateStruct`
-      console.log('Date selected:', date);
+      //console.log('Date selected:', date);
       const jsDate = new Date(date.year, date.month - 1, date.day);
       this.fechaActual = formatDate(jsDate, 'yyyy-MM-dd', 'en-US');
       this.checarCitas();

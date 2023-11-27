@@ -10,8 +10,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // Ejemplo de función para obtener datos de la API
   getCitas(fecha : String): Observable<any> {
     return this.http.get(`${this.apiUrl}/citasDeUnDia/${fecha}`);
+  }
+
+  getHistorico(idConsultorio : Number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/historicoConsultorio/${idConsultorio}`);
   }
 }
