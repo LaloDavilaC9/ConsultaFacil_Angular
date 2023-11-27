@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+
+<div class="container">
+  
+  <h1>BIENVENIDO AL MEJOR BUSCADOR DE CONSULTORIOS</h1>
+  <h2>¿QUÉ DESEAS HACER?</h2>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [routerLink]="['/loginPaciente']">INICIAR SESIÓN COMO PACIENTE</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [routerLink]="['/signUpPaciente']">REGISTRARSE COMO PACIENTE</button>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [routerLink]="['/loginConsultorio']">INICIAR SESIÓN COMO CONSULTORIO</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" [routerLink]="['/signUpConsultorio']">REGISTRARSE COMO CONSULTORIO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</div>

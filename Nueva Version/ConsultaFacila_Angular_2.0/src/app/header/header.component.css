@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#principal{
+    background-color: #2196F3;
+    margin:0;
+    padding: 0;
+}
+#foto img{
+    height: 300px;
+    width: 300px;
+}
+
+#foto img{
+    position: relative;
+    height: 121px;
+    width: 120px;
+    top: 10px;
+    margin-left: 60px;
+}
+
+#home{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: 30px;
+    margin-left: 350px;
+}
+
+#perfil{
+    position: relative;
+    height: 75px;
+    width: 75px;
+    top: 20px;
+    margin-left: 50px;
+}
+
+#titulo{
+    color: white;
+    width: 600px;
+    text-align: center;
+    font-family: 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#titulo p{
+    margin-top: 30px;
+    font-size: 60px;
+}
+
+#subtitulo{
+    margin-top: 30px;
+    text-align: center;
+    
+}
+
+#subtitulo p{
+    color: rgb(255, 255, 255);
+    width: 500px;
+    font-size: 20px;
+    text-align: center;
+    /*margin-left:50px;*/
+
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
