@@ -27,6 +27,7 @@ import { SupportComponent } from './support/support.component';
 import { TeamComponent } from './team/team.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { FormsModule } from '@angular/forms';
     SignupPacienteComponent,
     StatisticsComponent,
     SupportComponent,
-    TeamComponent
+    TeamComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

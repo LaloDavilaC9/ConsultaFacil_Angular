@@ -11,3 +11,8 @@ h2{
     font-size: 30px;
     text-align: center;
 }
+
+ngb-datepicker{
+    position: relative;
+    left:200px;
+}

@@ -33,7 +33,7 @@
           </div>
           <div class="col-md-6">
             <div class="container mt-4">
-                <h1>PACIENTES DE HOY</h1>
+                <h1>{{tituloTabla}}</h1>
                 <table class="table">
                     <thead>
                         <tr>
@@ -44,19 +44,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Enrique Serna Juárez</td>
-                            <td>30</td>
-                            <td>01/01/1993</td>
-                            <td>Sí</td>
-                        </tr>
-                        <tr>
-                            <td>Andrea González González</td>
-                            <td>25</td>
-                            <td>15/07/1998</td>
-                            <td>No</td>
-                        </tr>
-                        <!-- Puedes agregar más filas según sea necesario -->
+                        <ng-container *ngIf="citasDeHoy && citasDeHoy.length > 0; else noData">
+                            <tr *ngFor="let persona of citasDeHoy">
+                              <td>{{ persona.Nombre }}</td>
+                              <td>{{ persona.Edad }}</td>
+                              <td>{{ persona.Nacimiento}}</td>
+                              <td>{{ persona.NumCitas == 1 ? 'Sí' : 'No' }}</td>
+                            </tr>
+                          </ng-container>
+                          <ng-template #noData>
+                            <tr>
+                              <td colspan="4">No hay citas registradas</td>
+                            </tr>
+                          </ng-template>
+                     
                     </tbody>
                 </table>
             </div>
