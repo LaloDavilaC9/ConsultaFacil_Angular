@@ -11,7 +11,6 @@ import { LoginPacienteComponent } from './login-paciente/login-paciente.componen
 import { SignupPacienteComponent } from './signup-paciente/signup-paciente.component';
 import { AdvertisingComponent } from './advertising/advertising.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecordComponent } from './record/record.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { TeamComponent } from './team/team.component';
@@ -22,6 +21,10 @@ import { DetailsComponent } from './details/details.component';
 import { DiaryComponent } from './diary/diary.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -17,7 +17,7 @@ import { AdvertisingComponent } from './advertising/advertising.component';
 import { SupportComponent } from './support/support.component';
 
 const routes: Routes = [
-
+  {path:'', component: HomeComponent},
   {path:'home', component: HomeComponent},
   {path:'loginPaciente', component: LoginPacienteComponent},
   {path:'loginConsultorio', component: LoginConsultorioComponent},
