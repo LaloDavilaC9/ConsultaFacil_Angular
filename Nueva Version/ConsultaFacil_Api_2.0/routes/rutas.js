@@ -15,10 +15,9 @@ router.get("/citasDeUnDia/:fecha", [], (req, res) => {
 
 
 
-router.get("/enProcesoAlumno/:idAlumno", [], (req, res) => {
-  //console.log("Desde antes: "+req.params.usuario);
-  const idAlumno = req.params.idAlumno;
-  user.enProcesoAlumno(connection, idAlumno,(data) => {
+router.get("/historicoConsultorio/:idConsultorio", [], (req, res) => {
+  const idConsultorio = req.params.idConsultorio;
+  user.historicoConsultorio(connection, idConsultorio,(data) => {
     res.json(data);
   });
 });

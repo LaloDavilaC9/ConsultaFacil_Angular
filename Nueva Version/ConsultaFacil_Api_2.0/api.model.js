@@ -33,15 +33,25 @@ module.exports = {
     },
 
 
-    enProcesoAlumno: (connection, id_Alumno,callback) => {
-      let query = `SELECT m.materia_nombre, CONCAT(a.alumno_nombre, ' ', a.alumno_apellidos) AS tutor_nombre_completo, a.alumno_telefono, a.alumno_correo, s.solicitud_descripcion, s.solicitud_id, s.solicitud_tema, 
-      s.solicitud_modalidad, s.solicitud_lugar, s.solicitud_urgencia, s.solicitud_fecha FROM solicitud AS s INNER JOIN materia AS m ON s.materia_id = m.materia_id 
-      LEFT JOIN tutor AS t ON s.tutor_id = t.tutor_id LEFT JOIN alumno AS a ON t.alumno_id = a.alumno_id WHERE s.solicitud_fecha_programacion IS NULL AND 
-      s.solicitud_vigente = 1
-      AND EXISTS 
-      (SELECT 1 FROM alumno_solicitud AS al WHERE al.solicitud_id = s.solicitud_id AND al.alumno_id = ${id_Alumno})
+    historicoConsultorio: (connection, idConsultorio,callback) => {
+      let query = `
+      SELECT
+          c.ID_Cita AS NumeroCita,
+          DATE_FORMAT(c.Fecha, '%Y-%m-%d %H:%i:%s') as Fecha,
+          p.Nombre AS NombrePaciente,
+          CONCAT(pe.Nombre, ' ', pe.Apellido_Paterno, ' ', pe.Apellido_Materno) AS NombreDoctor,
+          p.Edad AS EdadPaciente,
+          es.Nombre_especialidad AS EspecialidadConsultorio
+      FROM
+          cita c
+      JOIN paciente p ON c.ID_Paciente = p.ID_Paciente
+      JOIN personal pe ON c.Id_personal = pe.Id_personal
+      JOIN consultorio co ON pe.Id_consultorio = co.ID_Consultorio
+      JOIN especialidad es ON co.Id_especialidad = es.Id_especialidad
+      WHERE
+      c.Finalizada = 1 AND co.ID_Consultorio =`+idConsultorio+` ;`;
+
       
-      ;`;
       console.log(query);
       connection.query(query, (err, results) => {
         if (err) {
