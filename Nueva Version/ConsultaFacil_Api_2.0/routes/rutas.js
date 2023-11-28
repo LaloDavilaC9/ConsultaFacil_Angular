@@ -71,6 +71,12 @@ router.get("/estadoDeAgenda/:idConsultorio/:fecha", [], (req, res) => {
 });
   
 
+router.get("/consultoriosDisponibles", [], (req, res) => {
+    user.consultoriosDisponibles(connection,(data) => {
+      res.json(data);
+    });
+  });
+
 /* router.post(
   "/nuevaSolicitud",
   [

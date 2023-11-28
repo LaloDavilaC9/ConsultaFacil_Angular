@@ -30,6 +30,10 @@ export class ApiService {
         return this.http.get(`${this.apiUrl}/personalConsultorio/${idConsultorio}`);
     }
 
+    getConsultoriosDisponibles(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/consultoriosDisponibles`);
+    }
+
 
     // Método para realizar la solicitud POST
     configurarAgenda(datos: any) {

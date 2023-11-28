@@ -96,7 +96,34 @@ module.exports = {
       });
     },
 
-    
+    consultoriosDisponibles: (connection,callback) => {
+      let query = `
+        SELECT
+        ID_Consultorio,
+        Nombre_Consultorio,
+        Costo_Consulta,
+        Descripcion,
+        Ubicacion,
+        Telefono
+        FROM
+        consultorio;
+      `;  
+
+     
+      connection.query(query, (err, results) => {
+        if (err) {
+          callback({
+            array: null,
+            id: null,
+            success: false,
+            err: JSON.stringify(err),
+          });
+          return;
+        }
+        callback({ array: results, id: null, success: true });
+      });
+    },
+
 
     especialidadesConsultorio: (connection, idConsultorio,callback) => {
       let query = `

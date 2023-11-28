@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/ApiService';
 
 @Component({
   selector: 'app-browser',
@@ -9,7 +10,9 @@ export class BrowserComponent implements OnInit {
 
   filtroNombre: string = '';
   filtroEspecialidad: string = '';
-  consultoriosFiltrados: any[] = []; // Aquí deberías tener la lista de consultorios con datos ficticios
+  consultoriosFiltrados: any[] = []; 
+  consultorios : any[] = [];
+
 
   buscarConsultorios() {
     // Lógica de búsqueda y filtrado de consultorios
@@ -21,7 +24,7 @@ export class BrowserComponent implements OnInit {
     });
   }
 
- // Datos ficticios de los consultorios
+ /* // Datos ficticios de los consultorios
  consultorios = [
   {
     foto: '../../assets/consultorio1.jpeg',
@@ -54,17 +57,31 @@ export class BrowserComponent implements OnInit {
     costoConsulta: 80,
     ubicacion: 'Avenida del Sol 0123',
     telefono: '999-999-9999'
-  }
+  } */
   // Puedes agregar más consultorios aquí si es necesario
-];
-  constructor() { }
+
+  constructor(private servicio: ApiService) { }
 
   ngOnInit(): void {
-    this.consultoriosFiltrados = this.getRandomConsultorios(3);
+    this.cargarConsultorios();
 
   }
   getRandomConsultorios(num: number): any[] {
     const consultorios = [...this.consultorios]; // Hacer una copia para no modificar el array original
     return Array.from({ length: num }, () => consultorios.splice(Math.floor(Math.random() * consultorios.length), 1)[0]);
+  }
+
+  cargarConsultorios() : void{
+    this.servicio.getConsultoriosDisponibles().subscribe(
+      (respuesta) => {
+        console.log('Respuesta del servidor:', respuesta);
+        this.consultorios = respuesta.array;
+        this.consultoriosFiltrados = this.getRandomConsultorios(3);
+
+      },
+      (error) => {
+        console.error('Error al enviar datos:', error);
+      }
+    );
   }
 }
