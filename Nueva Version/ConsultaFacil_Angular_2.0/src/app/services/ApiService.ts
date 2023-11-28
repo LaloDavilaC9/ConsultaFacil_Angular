@@ -22,6 +22,10 @@ export class ApiService {
         return this.http.get(`${this.apiUrl}/estadoDeAgenda/${idConsultorio}/${fecha}`);
     }
 
+    getEspecialidadesConsultorio(idConsultorio : Number): Observable<any> {
+        return this.http.get(`${this.apiUrl}/especialidadesConsultorio/${idConsultorio}`);
+    }
+
     // Método para realizar la solicitud POST
     configurarAgenda(datos: any) {
         // Configuración de las cabeceras (headers)
@@ -31,5 +35,16 @@ export class ApiService {
 
         // Realizar la solicitud POST
         return this.http.post(`${this.apiUrl}/configurarAgenda`, datos, { headers });
+    }
+
+    // Método para realizar la solicitud POST
+    agregarPersonal(datos: any) {
+        // Configuración de las cabeceras (headers)
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+
+        // Realizar la solicitud POST
+        return this.http.post(`${this.apiUrl}/agregarPersonal`, datos, { headers });
     }
 }

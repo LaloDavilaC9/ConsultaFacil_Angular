@@ -22,14 +22,13 @@ router.get("/historicoConsultorio/:idConsultorio", [], (req, res) => {
   });
 });
 
-router.get("/proximasAlumno/:idAlumno", [], (req, res) => {
-  //console.log("Desde antes: "+req.params.usuario);
-  const idAlumno = req.params.idAlumno;
-  user.proximasAlumno(connection, idAlumno,(data) => {
-    res.json(data);
+router.get("/especialidadesConsultorio/:idConsultorio", [], (req, res) => {
+    const idConsultorio = req.params.idConsultorio;
+    user.especialidadesConsultorio(connection, idConsultorio,(data) => {
+      res.json(data);
+    });
   });
-});
-
+ 
 
 router.get("/solicitudes/:planId/:semestre", [], (req, res) => {
   //console.log("Desde antes: "+req.params.usuario);
@@ -116,6 +115,24 @@ router.post(
     });
   }
 );
+
+router.post(
+    "/agregarPersonal",
+    (req, res) => {
+      
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.json({ success: false, err: JSON.stringify(errors) });
+        return;
+      }
+      let body = req.body;
+  
+      user.agregarPersonal(connection, body, (data) => {
+        res.json(data);
+  
+      });
+    }
+  );
 
 router.post(
   "/cancelarSolicitud",

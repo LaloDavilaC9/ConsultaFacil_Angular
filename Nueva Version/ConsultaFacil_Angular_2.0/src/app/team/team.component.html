@@ -16,9 +16,15 @@
         <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoEmpleado.apm">
       </div>
       <div class="form-group">
-        <label for="puesto">Puesto:</label>
-        <input type="text" class="form-control" id="puesto" [(ngModel)]="nuevoEmpleado.puesto">
+        <label for="puesto">Especialidad:</label><br>
+        <select class="form-control"  [(ngModel)]="nuevoEmpleado.Id_especialidad">
+          <option *ngFor="let especialidad of especialidades"  [value]="especialidad.id_especialidad">
+            {{ especialidad.NombreEspecialidad }}
+          </option>
+        </select>
       </div>
+      <br>
+     
       <button class="btn btn-success" (click)="darDeAlta()">Dar de Alta</button>
 
     <table class="table">
@@ -29,12 +35,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let empleado of empleados">
+       <!--  <tr *ngFor="let empleado of empleados">
           <td>{{ empleado.nombre }} {{empleado.app}} {{empleado.apm}}</td>
           <td>
             <button class="btn btn-danger" (click)="darDeBaja(empleado)">Dar de Baja</button>
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   
