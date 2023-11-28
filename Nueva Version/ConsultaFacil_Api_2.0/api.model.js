@@ -5,17 +5,28 @@ module.exports = {
     
     citasDeUnDia: (connection, fecha,callback) => {
       let query = `SELECT
+      p.ID_Paciente,
       p.Nombre,
       p.Edad,
-      DATE_FORMAT(p.Nacimiento, '%Y-%m-%d') as Nacimiento,
-      COUNT(c.ID_Cita) AS NumCitas
+      DATE_FORMAT(c.Fecha, '%Y-%m-%d') AS FechaFormateada,
+      DATE_FORMAT(p.Nacimiento, '%Y-%m-%d') AS Nacimiento,
+      NumCitas.TotalCitas
       FROM
           paciente p
-      LEFT JOIN cita c ON p.ID_Paciente = c.ID_Paciente
-      WHERE
-          c.Fecha = '`+fecha+`' OR c.Fecha IS NULL
-      GROUP BY
-      p.ID_Paciente;`;
+      INNER JOIN
+          cita c ON p.ID_Paciente = c.ID_Paciente
+      LEFT JOIN (
+          SELECT
+              ID_Paciente,
+              COUNT(ID_Cita) AS TotalCitas
+          FROM
+              cita
+          GROUP BY
+              ID_Paciente
+      ) AS NumCitas ON p.ID_Paciente = NumCitas.ID_Paciente
+        WHERE
+              DATE_FORMAT(Fecha, '%Y-%m-%d') = '${fecha}';
+      `;
 
 
       connection.query(query, (err, results) => {
@@ -41,13 +52,14 @@ module.exports = {
           p.Nombre AS NombrePaciente,
           CONCAT(pe.Nombre, ' ', pe.Apellido_Paterno, ' ', pe.Apellido_Materno) AS NombreDoctor,
           p.Edad AS EdadPaciente,
-          es.Nombre_especialidad AS EspecialidadConsultorio
+          esp.Nombre_especialidad AS EspecialidadConsultorio
       FROM
           cita c
-      JOIN paciente p ON c.ID_Paciente = p.ID_Paciente
-      JOIN personal pe ON c.Id_personal = pe.Id_personal
-      JOIN consultorio co ON pe.Id_consultorio = co.ID_Consultorio
-      JOIN especialidad es ON co.Id_especialidad = es.Id_especialidad
+      INNER JOIN paciente p ON c.ID_Paciente = p.ID_Paciente
+      INNER JOIN personal pe ON c.Id_personal = pe.Id_personal
+      INNER JOIN consultorio co ON pe.Id_consultorio = co.ID_Consultorio
+      INNER JOIN especialidad esp ON pe.Id_especialidad = esp.Id_especialidad
+      
       WHERE
       c.Finalizada = 1 AND co.ID_Consultorio =`+idConsultorio+` ;`;
 
