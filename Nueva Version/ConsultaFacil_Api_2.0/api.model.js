@@ -65,23 +65,10 @@ module.exports = {
       });
     },
 
-    historicoConsultorio: (connection, idConsultorio,callback) => {
+    personalConsultorio: (connection, idConsultorio,callback) => {
       let query = `
-      SELECT
-          c.ID_Cita AS NumeroCita,
-          DATE_FORMAT(c.Fecha, '%Y-%m-%d %H:%i:%s') as Fecha,
-          p.Nombre AS NombrePaciente,
-          CONCAT(pe.Nombre, ' ', pe.Apellido_Paterno, ' ', pe.Apellido_Materno) AS NombreDoctor,
-          p.Edad AS EdadPaciente,
-          es.Nombre_especialidad AS EspecialidadConsultorio
-      FROM
-          cita c
-      JOIN paciente p ON c.ID_Paciente = p.ID_Paciente
-      JOIN personal pe ON c.Id_personal = pe.Id_personal
-      JOIN consultorio co ON pe.Id_consultorio = co.ID_Consultorio
-      JOIN especialidad es ON co.Id_especialidad = es.Id_especialidad
-      WHERE
-      c.Finalizada = 1 AND co.ID_Consultorio =`+idConsultorio+` ;`;
+      SELECT p.*, e.Nombre_especialidad FROM personal p 
+      JOIN especialidad e ON p.Id_Especialidad = e.Id_Especialidad WHERE p.Id_Consultorio=`+idConsultorio+` ;`;
 
       connection.query(query, (err, results) => {
         if (err) {
@@ -97,6 +84,7 @@ module.exports = {
       });
     },
 
+    
 
     especialidadesConsultorio: (connection, idConsultorio,callback) => {
       let query = `
@@ -106,7 +94,6 @@ module.exports = {
       JOIN consultorio ON consultorio.ID_Consultorio = especialidad_consultorio.Id_consultorio
       JOIN especialidad ON especialidad.Id_especialidad = especialidad_consultorio.Id_especialidad
       WHERE especialidad_consultorio.ID_Consultorio = `+idConsultorio+` ;`;
-      console.log("hola");
       connection.query(query, (err, results) => {
         if (err) {
           callback({
@@ -121,6 +108,29 @@ module.exports = {
       });
     },
    
+    /* personalConsultorio: (connection, idConsultorio,callback) => {
+      let query = `
+      SELECT Especialidad.Nombre_especialidad AS NombreEspecialidad,
+      Especialidad.id_especialidad AS id_especialidad
+      FROM especialidad_consultorio
+      JOIN consultorio ON consultorio.ID_Consultorio = especialidad_consultorio.Id_consultorio
+      JOIN especialidad ON especialidad.Id_especialidad = especialidad_consultorio.Id_especialidad
+      WHERE especialidad_consultorio.ID_Consultorio = `+idConsultorio+` ;`;
+
+      connection.query(query, (err, results) => {
+        if (err) {
+          callback({
+            array: null,
+            id: null,
+            success: false,
+            err: JSON.stringify(err),
+          });
+          return;
+        }
+        callback({ array: results, id: null, success: true });
+      });
+    }, */
+
     insertarAlumnoSolicitud: async (connection, alumno_id,solicitud_id, callback) => {
       //console.log("Llega: "+body.solicitud_fecha);
       let query = "insert into alumno_solicitud (alumno_id,solicitud_id,alumno_encargado,alumno_asistencia) VALUES ("+alumno_id+","+solicitud_id+",1,0)";
@@ -148,8 +158,6 @@ module.exports = {
 
     
     estadoDeAgenda: (connection, Id_consultorio,fecha, callback) => {
-   
-
         let query = `
             SELECT
             p.ID_Paciente,
@@ -203,6 +211,24 @@ module.exports = {
       let apm = body.apm;
 
       query = "INSERT INTO personal (Id_consultorio, Id_especialidad, Nombre, Apellido_Paterno,Apellido_Materno) VALUES ("+Id_consultorio+", "+Id_especialidad+",'"+nombre+"','"+app+"','"+apm+"')";
+      connection.query(query, (err, results) => {
+        if (err) {
+          callback({
+            array: null,
+            id: null,
+            success: false,
+            err: JSON.stringify(err),
+          });
+          return;
+        }
+        callback({ array: null, id: null, success: true });
+      });
+    },
+
+    darDeBajaPersonal: (connection,body, callback) => {
+      let Id_personal = body.Id_personal;
+
+      query = "DELETE FROM personal WHERE id_personal = "+Id_personal;
       connection.query(query, (err, results) => {
         if (err) {
           callback({

@@ -10,8 +10,8 @@ import { ConsultorioService } from '../services/ConsultorioService';
 export class TeamComponent implements OnInit {
 
   
-  especialidades : any[] = []
-
+  especialidades : any[] = [];
+  personal : any[] = [];
  /*  empleados = [
     { nombre: 'Juan', app:'Pérez', apm:'Márquez', Id_especialidad: '', Id_consulto },
     { nombre: 'María', app:'García', apm:'Serna', especialidad: '' },
@@ -27,10 +27,16 @@ export class TeamComponent implements OnInit {
   };
 
   darDeBaja(empleado: any) {
-   /*  const index = this.empleados.indexOf(empleado);
-    if (index !== -1) {
-      this.empleados.splice(index, 1);
-    } */
+    this.servicio.darDeBajaPersonal(empleado).subscribe(
+      (respuesta) => {
+        console.log('Respuesta del servidor:', respuesta);
+        this.ngOnInit();
+
+      },
+      (error) => {
+        console.error('Error al enviar datos:', error);
+      }
+    );
   }
 
   darDeAlta() {
@@ -61,6 +67,19 @@ export class TeamComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarEspecialides();
+    this.cargarPersonal();
+  }
+
+  cargarPersonal():void{
+    this.servicio.getPersonalConsultorio(this.consultorioService.getIdConsultorio()).subscribe(
+      (respuesta) => {
+        console.log('Respuesta del servidor:', respuesta);
+        this.personal = respuesta.array;
+      },
+      (error) => {
+        console.error('Error al enviar datos:', error);
+      }
+    );
   }
 
   cargarEspecialides():void{

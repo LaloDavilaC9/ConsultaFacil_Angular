@@ -29,6 +29,12 @@ router.get("/especialidadesConsultorio/:idConsultorio", [], (req, res) => {
     });
   });
  
+router.get("/personalConsultorio/:idConsultorio", [], (req, res) => {
+    const idConsultorio = req.params.idConsultorio;
+    user.personalConsultorio(connection, idConsultorio,(data) => {
+        res.json(data);
+    });
+});
 
 router.get("/solicitudes/:planId/:semestre", [], (req, res) => {
   //console.log("Desde antes: "+req.params.usuario);
@@ -128,6 +134,24 @@ router.post(
       let body = req.body;
   
       user.agregarPersonal(connection, body, (data) => {
+        res.json(data);
+  
+      });
+    }
+  );
+
+  router.post(
+    "/darDeBajaPersonal",
+    (req, res) => {
+      
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.json({ success: false, err: JSON.stringify(errors) });
+        return;
+      }
+      let body = req.body;
+  
+      user.darDeBajaPersonal(connection, body, (data) => {
         res.json(data);
   
       });

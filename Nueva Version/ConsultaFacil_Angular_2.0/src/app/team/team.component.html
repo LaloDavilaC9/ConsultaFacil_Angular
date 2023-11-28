@@ -31,16 +31,18 @@
       <thead>
         <tr>
           <th>Nombre</th>
+          <th>Especialidad</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-       <!--  <tr *ngFor="let empleado of empleados">
-          <td>{{ empleado.nombre }} {{empleado.app}} {{empleado.apm}}</td>
+        <tr *ngFor="let empleado of personal">
+          <td>{{ empleado.Nombre }} {{empleado.Apellido_Paterno}} {{empleado.Apellido_Materno}}</td>
+          <td>{{ empleado.Nombre_especialidad }}</td>
           <td>
             <button class="btn btn-danger" (click)="darDeBaja(empleado)">Dar de Baja</button>
           </td>
-        </tr> -->
+        </tr>
       </tbody>
     </table>
   
