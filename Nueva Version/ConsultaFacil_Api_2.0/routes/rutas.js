@@ -77,6 +77,28 @@ router.get("/consultoriosDisponibles", [], (req, res) => {
     });
   });
 
+  router.get("/especialidadesDisponibles", [], (req, res) => {
+    user.especialidadesDisponibles(connection,(data) => {
+      res.json(data);
+    });
+  });
+
+  router.get("/infoConsultorio/:idConsultorio", [], (req, res) => {
+    const idConsultorio = req.params.idConsultorio;
+
+    user.infoConsultorio(connection,idConsultorio,(data) => {
+      res.json(data);
+    });
+  });
+
+  router.get("/horariosDisponibles/:idConsultorio/:idEspecialidad", [], (req, res) => {
+    const idConsultorio = req.params.idConsultorio;
+    const idEspecialidad = req.params.idEspecialidad;
+    user.horariosDisponibles(connection,idConsultorio,idEspecialidad,(data) => {
+      res.json(data);
+    });
+  });
+
 /* router.post(
   "/nuevaSolicitud",
   [

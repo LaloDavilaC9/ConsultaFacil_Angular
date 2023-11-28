@@ -34,6 +34,15 @@ export class ApiService {
         return this.http.get(`${this.apiUrl}/consultoriosDisponibles`);
     }
 
+    getEspecialidades(): Observable<any> {
+        return this.http.get(`${this.apiUrl}/especialidadesDisponibles`);
+    }
+
+    getInfoConsultorio(idConsultorio : String | null): Observable<any> {
+        return this.http.get(`${this.apiUrl}/infoConsultorio/${idConsultorio}`);
+    }
+
+
 
     // Método para realizar la solicitud POST
     configurarAgenda(datos: any) {

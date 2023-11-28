@@ -4,14 +4,18 @@
     <h1>CATÁLOGO DE CONSULTORIOS</h1>
   
     <div class="form-row">
-      <div class="col-md-6 mb-3">
+      <!-- <div class="col-md-6 mb-3">
         <label for="nombre">Nombre del Consultorio</label>
         <input type="text" class="form-control" id="nombre" [(ngModel)]="filtroNombre">
-      </div>
+      </div> -->
       <div class="col-md-6 mb-3">
         <label for="especialidad">Especialidad</label>
-        <input type="text" class="form-control" id="especialidad" [(ngModel)]="filtroEspecialidad">
+        <select class="form-control" id="especialidad" [(ngModel)]="filtroEspecialidad">
+          <option value="" selected>Seleccione una especialidad</option>
+          <option *ngFor="let esp of especialidades" [value]="esp.Nombre_especialidad">{{ esp.Nombre_especialidad }}</option>
+        </select>
       </div>
+      
     </div>
   
     <button class="btn btn-primary mb-3" (click)="buscarConsultorios()">Buscar</button>
@@ -20,13 +24,17 @@
       <div class="col-md-4" *ngFor="let consultorio of consultoriosFiltrados">
         <div class="card mb-4">
 <!--           <img src="{{ consultorio.foto }}" class="card-img-top img-fluid" alt="{{ consultorio.nombre }}">
- -->          <div class="card-body">
+ -->          
+        <div class="card-body">
             <h5 class="card-title">{{ consultorio.Nombre_Consultorio }}</h5>
-<!--             <p class="card-text">{{ consultorio.especialidad }}</p>
- -->            <p class="card-text">Costo por consulta: ${{ consultorio.Costo_Consulta }}</p>
+            <p class="card-text">Especialidad: {{ consultorio.Nombre_especialidad }}</p>
+            <p class="card-text">Costo por consulta: ${{ consultorio.Costo_Consulta }}</p>
             <p class="card-text">{{ consultorio.Ubicacion }}</p>
             <p class="card-text">Teléfono: {{ consultorio.Telefono }}</p>
-            <a href="/details" class="btn btn-primary">Ver este consultorio</a>
+            <p class="card-text">ID: {{ consultorio.ID_Consultorio }}</p>
+            <a [routerLink]="['/details', consultorio.ID_Consultorio,consultorio.Nombre_especialidad]" class="btn btn-primary">Ver este consultorio</a>
+
+
           </div>
         </div>
       </div>

@@ -99,14 +99,19 @@ module.exports = {
     consultoriosDisponibles: (connection,callback) => {
       let query = `
         SELECT
-        ID_Consultorio,
-        Nombre_Consultorio,
-        Costo_Consulta,
-        Descripcion,
-        Ubicacion,
-        Telefono
+        co.ID_Consultorio,
+        co.Nombre_Consultorio,
+        co.Costo_Consulta,
+        co.Descripcion,
+        co.Ubicacion,
+        co.Telefono,
+        e.Nombre_especialidad
         FROM
-        consultorio;
+            consultorio co
+        LEFT JOIN
+            especialidad_consultorio ec ON co.ID_Consultorio = ec.ID_Consultorio
+        LEFT JOIN
+            especialidad e ON ec.ID_especialidad = e.ID_especialidad;
       `;  
 
      
@@ -124,6 +129,87 @@ module.exports = {
       });
     },
 
+    especialidadesDisponibles: (connection,callback) => {
+      let query = `
+        SELECT * FROM especialidad;
+      `;  
+
+     
+      connection.query(query, (err, results) => {
+        if (err) {
+          callback({
+            array: null,
+            id: null,
+            success: false,
+            err: JSON.stringify(err),
+          });
+          return;
+        }
+        callback({ array: results, id: null, success: true });
+      });
+    },
+
+    infoConsultorio: (connection,idConsultorio,callback) => {
+      let query = `
+        SELECT * FROM consultorio WHERE ID_Consultorio = ${idConsultorio};
+      `;  
+
+     
+      connection.query(query, (err, results) => {
+        if (err) {
+          callback({
+            array: null,
+            id: null,
+            success: false,
+            err: JSON.stringify(err),
+          });
+          return;
+        }
+        callback({ array: results, id: null, success: true });
+      });
+    },
+
+    
+    horariosDisponibles: (connection,idConsultorio,idEspecialidad, callback) => {
+      let query = `
+        SELECT
+        c.ID_Cita,
+        c.ID_Paciente,
+        c.Fecha,
+        p.Nombre AS NombrePaciente,
+        d.Nombre,
+        e.Nombre_Especialidad,
+        co.Nombre_Consultorio
+        FROM
+            cita c
+        LEFT JOIN
+            paciente p ON c.ID_Paciente = p.ID_Paciente
+        LEFT JOIN
+            personal d ON c.Id_personal = d.Id_personal
+        LEFT JOIN
+            especialidad e ON d.Id_especialidad = e.ID_especialidad
+        LEFT JOIN
+            consultorio co ON d.Id_consultorio = co.ID_Consultorio
+        WHERE
+            e.ID_especialidad = ${idEspecialidad}
+            AND co.ID_Consultorio = ${idConsultorio}
+            AND c.ID_Paciente IS NULL;
+      `;  
+
+     
+      connection.query(query, (err, results) => {
+        if (err) {
+          callback({
+            array: null,
+            id: null,
+            success: false,
+            err: JSON.stringify(err),
+          });
+          return;
+        }
+        callback({ array: results, id: null, success: true });
+      });
+    },
 
     especialidadesConsultorio: (connection, idConsultorio,callback) => {
       let query = `

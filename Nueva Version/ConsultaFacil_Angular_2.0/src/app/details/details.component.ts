@@ -1,18 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
+import { Consultorio } from '../consultorio';
+import { ApiService } from '../services/ApiService';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-
-  constructor() { }
+  id_consultorio: string | null = "";
+  especialidad : string | null = "";
+  consultorioInfo : Consultorio  | null = null
+  constructor(private route: ActivatedRoute,private servicio: ApiService) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.id_consultorio = params.get('idConsultorio');
+      this.especialidad = params.get('nombreEspecialidad');
+      console.log("ID QUE LLEGA: "+this.id_consultorio);
+
+      this.servicio.getInfoConsultorio(this.id_consultorio).subscribe(
+        (respuesta) => {
+          console.log('Respuesta del servidor:', respuesta);
+          this.consultorioInfo = respuesta.array[0];
+        },
+        (error) => {
+          console.error('Error al enviar datos:', error);
+        }
+      );
+      
+      // Luego usa consultorioId para cargar los detalles del consultorio desde tu servicio
+      // this.consultorioService.getConsultorioDetails(consultorioId).subscribe(details => {
+      //   // Hacer algo con los detalles
+      // });
+    });
   }
 
-  consultorio = {
+  /* consultorio = {
     nombre: 'Dr. Enrique Pelaéz Jiménez',
     especialidad: 'Medicina General',
     costoConsulta: 50,
@@ -20,13 +44,13 @@ export class DetailsComponent implements OnInit {
     ubicacion: 'Calle Principal 123',
     telefono: '123-456-7890'
   };
-
+ */
   horasDisponibles = ['10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM'];
   horasOcupadas = ['3:00 PM', '4:00 PM'];
-  horasSeleccionadas: string[] = [];
+  horasSeleccionadas: string[] = []; 
 
   
-  toggleHora(hora: string) {
+    toggleHora(hora: string) {
     const index = this.horasSeleccionadas.indexOf(hora);
     if (index !== -1) {
       this.horasSeleccionadas.splice(index, 1);
@@ -38,7 +62,7 @@ export class DetailsComponent implements OnInit {
   isHoraSeleccionada(hora: string) {
     return this.horasSeleccionadas.includes(hora);
   }
-
+ 
   activeSlideIndex = 0;
   slides = [
     { image: 'assets/consultorio1.jpeg' },
@@ -52,7 +76,7 @@ export class DetailsComponent implements OnInit {
 
   nextSlide(): void {
     this.activeSlideIndex = (this.activeSlideIndex + 1) % this.slides.length;
-  }
+  } 
 }
 
 
