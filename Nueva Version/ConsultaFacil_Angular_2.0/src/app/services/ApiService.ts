@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,11 +10,26 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getCitas(fecha : String): Observable<any> {
-    return this.http.get(`${this.apiUrl}/citasDeUnDia/${fecha}`);
-  }
+    getCitas(fecha : String): Observable<any> {
+        return this.http.get(`${this.apiUrl}/citasDeUnDia/${fecha}`);
+    }
 
-  getHistorico(idConsultorio : Number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/historicoConsultorio/${idConsultorio}`);
-  }
+    getHistorico(idConsultorio : Number): Observable<any> {
+        return this.http.get(`${this.apiUrl}/historicoConsultorio/${idConsultorio}`);
+    }
+
+    getEstadoDeAgenda(idConsultorio : Number,fecha : String): Observable<any> {
+        return this.http.get(`${this.apiUrl}/estadoDeAgenda/${idConsultorio}/${fecha}`);
+    }
+
+    // Método para realizar la solicitud POST
+    configurarAgenda(datos: any) {
+        // Configuración de las cabeceras (headers)
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+        });
+
+        // Realizar la solicitud POST
+        return this.http.post(`${this.apiUrl}/configurarAgenda`, datos, { headers });
+    }
 }

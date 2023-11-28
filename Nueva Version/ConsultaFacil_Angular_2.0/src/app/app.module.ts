@@ -35,6 +35,7 @@ import { DatePipe } from '@angular/common';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { NgbDatepickerI18n, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { VerInformacionModalComponent } from './modals/ver-informacion-modal/ver-informacion-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { NgbDatepickerI18n, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstr
     StatisticsComponent,
     SupportComponent,
     TeamComponent,
-    AnotacionesModalComponent
+    AnotacionesModalComponent,
+    VerInformacionModalComponent
     
   ],
   imports: [

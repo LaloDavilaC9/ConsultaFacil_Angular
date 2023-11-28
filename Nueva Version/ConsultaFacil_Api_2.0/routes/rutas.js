@@ -56,16 +56,17 @@ router.get("/enProcesoTutor/:idTutor", [], (req, res) => {
   });
 });
 
-router.get("/proximasTutor/:idTutor", [], (req, res) => {
+router.get("/estadoDeAgenda/:idConsultorio/:fecha", [], (req, res) => {
   //console.log("Desde antes: "+req.params.usuario);
-  const idTutor = req.params.idTutor;
-  user.proximasTutor(connection, idTutor,(data) => {
+  const idConsultorio = req.params.idConsultorio;
+  const fecha = req.params.fecha;
+  user.estadoDeAgenda(connection, idConsultorio,fecha,(data) => {
     res.json(data);
   });
 });
   
 
-router.post(
+/* router.post(
   "/nuevaSolicitud",
   [
     body("solicitud_fecha").not().isEmpty().isString(),
@@ -94,12 +95,12 @@ router.post(
      });
    });
   }
-);
+); */
 
 
 
 router.post(
-  "/aceptarSolicitud",
+  "/configurarAgenda",
   (req, res) => {
     
     const errors = validationResult(req);
@@ -109,7 +110,7 @@ router.post(
     }
     let body = req.body;
 
-    user.aceptarSolicitud(connection, body, (data) => {
+    user.configurarAgenda(connection, body, (data) => {
       res.json(data);
 
     });
