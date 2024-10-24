@@ -9,5 +9,5 @@ export interface Paciente {
     municipio: string;
     nombreUsuario: string;
     contrasena: string;
-  }
+}
   

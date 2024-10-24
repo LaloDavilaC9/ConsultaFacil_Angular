@@ -16,28 +16,34 @@
         <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoEmpleado.apm">
       </div>
       <div class="form-group">
-        <label for="puesto">Puesto:</label>
-        <input type="text" class="form-control" id="puesto" [(ngModel)]="nuevoEmpleado.puesto">
+        <label for="puesto">Especialidad:</label><br>
+        <select class="form-control"  [(ngModel)]="nuevoEmpleado.Id_especialidad">
+          <option *ngFor="let especialidad of especialidades"  [value]="especialidad.id_especialidad">
+            {{ especialidad.NombreEspecialidad }}
+          </option>
+        </select>
       </div>
+      <br>
+     
       <button class="btn btn-success" (click)="darDeAlta()">Dar de Alta</button>
 
     <table class="table">
       <thead>
         <tr>
           <th>Nombre</th>
+          <th>Especialidad</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let empleado of empleados">
-          <td>{{ empleado.nombre }} {{empleado.app}} {{empleado.apm}}</td>
+        <tr *ngFor="let empleado of personal">
+          <td>{{ empleado.Nombre }} {{empleado.Apellido_Paterno}} {{empleado.Apellido_Materno}}</td>
+          <td>{{ empleado.Nombre_especialidad }}</td>
           <td>
             <button class="btn btn-danger" (click)="darDeBaja(empleado)">Dar de Baja</button>
           </td>
         </tr>
       </tbody>
     </table>
-  
-    
   </div>
   

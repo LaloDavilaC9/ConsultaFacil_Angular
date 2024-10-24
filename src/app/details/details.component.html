@@ -14,12 +14,12 @@
 
       <!-- Detalles del consultorio -->
       <div class="col-md-8">
-        <h2>{{ consultorio.nombre }}</h2>
-        <p>Especialidad: {{ consultorio.especialidad }}</p>
-        <p>Costo por consulta: ${{ consultorio.costoConsulta }}</p>
-        <p>Descripción: {{ consultorio.descripcion }}</p>
-        <p>Ubicación: {{ consultorio.ubicacion }}</p>
-        <p>Teléfono: {{ consultorio.telefono }}</p>
+        <h2>{{ consultorioInfo?.Nombre_Consultorio }}</h2>
+        <p>Especialidad: {{ especialidad }}</p>
+        <p>Costo por consulta: ${{ consultorioInfo?.Costo_Consulta }}</p>
+        <p>Descripción: {{ consultorioInfo?.Descripcion }}</p>
+        <p>Ubicación: {{ consultorioInfo?.Ubicacion }}</p>
+        <p>Teléfono: {{ consultorioInfo?.Telefono }}</p>
       </div>
     </div>
 

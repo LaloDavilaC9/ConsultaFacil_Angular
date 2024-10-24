@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "f229decc-5de4-40ab-b5b3-19b54f8b0273"
+    "analytics": "27c7860e-23d4-4b0b-819c-4951efd4d0d0"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "consultaFacil": {
+    "pruebasAngular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/consulta-facil",
+            "outputPath": "dist/pruebas-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,17 +30,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/jquery/dist/jquery.min.js",
-
-              "node_modules/@popperjs/core/dist/umd/popper.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -79,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "consultaFacil:build:production"
+              "browserTarget": "pruebasAngular:build:production"
             },
             "development": {
-              "browserTarget": "consultaFacil:build:development"
+              "browserTarget": "pruebasAngular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "consultaFacil:build"
+            "browserTarget": "pruebasAngular:build"
           }
         },
         "test": {
@@ -114,5 +108,5 @@
       }
     }
   },
-  "defaultProject": "consultaFacil"
+  "defaultProject": "pruebasAngular"
 }
